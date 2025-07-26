@@ -1,7 +1,7 @@
 require_relative "lib/aliyun_sdk/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "aliyun_sdk"
+  spec.name          = "aliyun_sdk_ruby"
   spec.version       = AliyunSDK::VERSION
   spec.authors       = ["David Zhang"]
   spec.email         = ["daqing@mzevo.com"]
@@ -14,5 +14,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 3.3"
 
-  spec.add_dependency "rest-client"
+  spec.add_dependency "rest-client", "~> 2.1"
 end
