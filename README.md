@@ -5,7 +5,7 @@
 添加到 Gemfile：
 
 ```ruby
-gem 'aliyun_sdk', github: "daqing/aliyun_sdk"
+gem 'aliyun_sdk_ruby'
 ```
 
 ## 使用方法
