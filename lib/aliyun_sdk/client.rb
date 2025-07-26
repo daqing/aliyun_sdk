@@ -36,7 +36,7 @@ module AliyunSDK
                  end
       JSON.parse(response.body)
     rescue RestClient::ExceptionWithResponse => e
-      { "error" => e.response }
+      { "Code" => "500", "Message" => e.response }
     end
   end
 end
