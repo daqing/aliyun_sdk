@@ -8,7 +8,7 @@
 gem 'aliyun_sdk_ruby'
 ```
 
-## 注意:
+## 注意
 
 虽然 Gem 的名称是 `aliyun_sdk_ruby`, 但是
 引入的代码是: `require 'aliyun_sdk'`
