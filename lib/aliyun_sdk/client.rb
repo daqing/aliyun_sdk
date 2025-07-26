@@ -1,5 +1,6 @@
 require "rest-client"
 require "json"
+require "securerandom"
 require_relative "config"
 require_relative "signer"
 

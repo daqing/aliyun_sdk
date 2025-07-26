@@ -1,26 +1,27 @@
 # AliyunSDK (基础通用 Ruby SDK)
 
-## 安装依赖
+## 安装
 
-```sh
-gem install rest-client
+添加到 Gemfile：
+
+```ruby
+gem 'aliyun_sdk'
 ```
 
 ## 使用方法
 
 ```ruby
-require_relative 'config'
-require_relative 'client'
+require 'aliyun_sdk'
 
 config = AliyunSDK::Config.new(
-  access_key_id: '你的AccessKeyId',
-  access_key_secret: '你的AccessKeySecret'
+  access_key_id: 'YourAccessKeyId',
+  access_key_secret: 'YourAccessKeySecret'
 )
 
 client = AliyunSDK::Client.new(config)
 
-# 以 ECS DescribeInstances 为例
-result = client.request('DescribeInstances', { 'Version' => '2014-05-26' })
+# 以 CloudAuth DescribeVerifyToken 为例
+result = client.cloud_auth_request('DescribeVerifyToken', { 'BizId' => 'xxx' })
 puts result
 ```
 
