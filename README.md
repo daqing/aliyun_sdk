@@ -5,7 +5,7 @@
 添加到 Gemfile：
 
 ```ruby
-gem 'aliyun_sdk'
+gem 'aliyun_sdk', github: "daqing/aliyun_sdk"
 ```
 
 ## 使用方法
@@ -14,20 +14,17 @@ gem 'aliyun_sdk'
 require 'aliyun_sdk'
 
 config = AliyunSDK::Config.new(
-  access_key_id: 'YourAccessKeyId',
-  access_key_secret: 'YourAccessKeySecret'
+  access_key_id: "YourAccessKeyID",
+  access_key_secret: "YourAccessKeySecret"
 )
 
 client = AliyunSDK::Client.new(config)
 
-# 以 CloudAuth DescribeVerifyToken 为例
-result = client.cloud_auth_request('DescribeVerifyToken', { 'BizId' => 'xxx' })
-puts result
+api = AliyunSDK::API::Id2MetaVerify.new("张三", "370503199922113344")
+response = client.request(api)
+
+puts response
 ```
-
-## 扩展
-
-你可以通过传递不同的 Action 和参数，访问任意阿里云 OpenAPI。
 
 ---
 
