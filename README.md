@@ -8,6 +8,17 @@
 gem 'aliyun_sdk_ruby'
 ```
 
+## 注意:
+
+虽然 Gem 的名称是 `aliyun_sdk_ruby`, 但是
+引入的代码是: `require 'aliyun_sdk'`
+
+为什么这样？因为 `aliyun_sdk` 这个名字，和现有的
+`aliyun-sdk` 名称非常相似，在执行 `gem push` 时
+RubyGems.org 拒绝让我发布，于是我把 gem 名称修改
+为 `aliyun_sdk_ruby`。
+
+
 ## 使用方法
 
 ```ruby
