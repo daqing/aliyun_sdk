@@ -1,33 +1,6 @@
 module AliyunSDK
   module API
     # 实人认证 - 身份二要素核验
-    #
-    # API 返回结果:
-    #
-    # 姓名和身份证匹配:
-    # {
-    #   "ResultObject" => {"BizCode" => "1"},
-    #   "RequestId" => "4924E5D4-874C-5062-9E37-992D85EDDFAE",
-    #   "Message" => "success",
-    #   "Code" => "200"
-    # }
-    #
-    # 姓名和身份证不匹配:
-    # {
-    #   "ResultObject" => {"BizCode" => "2"},
-    #   "RequestId" => "7CB9FE8B-8A9F-5E49-8C17-4DD4B1C724A2",
-    #   "Message" => "success",
-    #   "Code" => "200"
-    # }
-    #
-    # 身份证非法:
-    # {
-    #   "RequestId" => "24394B83-EE10-5C5F-A0BC-FBC680A694A4",
-    #   "HostId" => "cloudauth.cn-hangzhou.aliyuncs.com",
-    #   "Code" => "401",
-    #   "Message" => "参数非法(identifyNum)",
-    #   "Recommend" => "https://api.aliyun.com/troubleshoot?q=401&product=Cloudauth&requestId=24394B83-EE10-5C5F-A0BC-FBC680A694A4"
-    # }
     class Id2MetaVerify
       # @param username [String] 姓名
       # @param id_number [String] 身份证号
@@ -58,6 +31,52 @@ module AliyunSDK
 
       def request_version
         "2019-03-07"
+      end
+
+      # API 返回结果:
+      #
+      # 姓名和身份证匹配:
+      # {
+      #   "ResultObject" => {"BizCode" => "1"},
+      #   "RequestId" => "4924E5D4-874C-5062-9E37-992D85EDDFAE",
+      #   "Message" => "success",
+      #   "Code" => "200"
+      # }
+      #
+      # 姓名和身份证不匹配:
+      # {
+      #   "ResultObject" => {"BizCode" => "2"},
+      #   "RequestId" => "7CB9FE8B-8A9F-5E49-8C17-4DD4B1C724A2",
+      #   "Message" => "success",
+      #   "Code" => "200"
+      # }
+      #
+      # 身份证非法:
+      # {
+      #   "RequestId" => "24394B83-EE10-5C5F-A0BC-FBC680A694A4",
+      #   "HostId" => "cloudauth.cn-hangzhou.aliyuncs.com",
+      #   "Code" => "401",
+      #   "Message" => "参数非法(identifyNum)",
+      #   "Recommend" => "https://api.aliyun.com/troubleshoot?q=401&product=Cloudauth&requestId=24394B83-EE10-5C5F-A0BC-FBC680A694A4"
+      # }
+      #
+      # @return [Hash] 返回结果:
+      #
+      # 姓名和身份证匹配:
+      # {code: 0, data: {match: true}, message: ""}
+      #
+      # 姓名和身份证不匹配:
+      # {code: 0, data: {match: false}, message: ""}
+      #
+      # 身份证非法:
+      # {code: 500, data: nil, message: "Invalid IdentifyNum"}
+      #
+      def handle_response(response)
+        code = response["Code"].to_i
+        return { code: code, data: nil, message: response["Message"] } if code != 200
+
+        match = response["ResultObject"]["BizCode"] == "1"
+        { code: 0, data: { match: match }, message: "success" }
       end
     end
   end

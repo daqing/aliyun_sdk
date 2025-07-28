@@ -10,6 +10,13 @@ module AliyunSDK
       @config = config
     end
 
+    # 返回统一的格式：
+    #
+    # 正常返回:
+    # { code: 0, data: {hello: "world"}, message: ""}
+    #
+    # 异常返回:
+    # { code: 500, data: nil, message: "internal error" }
     def request(api)
       public_params = {
         "Format" => "JSON",
@@ -34,9 +41,9 @@ module AliyunSDK
                  else
                    RestClient.post("https://#{endpoint}", all_params)
                  end
-      JSON.parse(response.body)
+      api.handle_response(JSON.parse(response.body))
     rescue RestClient::ExceptionWithResponse => e
-      { "Code" => "500", "Message" => e.response }
+      { code: 500, data: nil, message: e.response }
     end
   end
 end
