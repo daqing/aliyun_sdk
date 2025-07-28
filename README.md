@@ -5,7 +5,7 @@
 添加到 Gemfile：
 
 ```ruby
-gem 'aliyun_sdk_ruby', '~> 0.2', require: 'aliyun_sdk'
+gem 'aliyun_sdk_ruby', '~> 0.3', require: 'aliyun_sdk'
 ```
 
 ## 注意
